@@ -1,30 +1,67 @@
-# Ecommerce-Customer-Delivery-Analysis
+# E-Commerce Customer Delivery Analysis
+
+An end-to-end SQL analysis examining shipping delays, shipment methods, warehouse performance, and their relationship with customer care calls and customer ratings.
+
 ---
+
 ## Project Overview
+
+This project investigates the factors associated with delivery delays across 10,999 customer shipment records. Using PostgreSQL, the analysis answers core operational questions regarding warehouse throughput, transportation efficiency, order priority, and customer service call volume.
+
+### Core Questions Addressed:
+1. Do delayed deliveries result in a higher number of customer care calls?
+2. What is the most common mode of shipment for each warehouse?
+3. How do delivery status and calls relate to customer ratings across warehouses?
+4. What are the on-time and delay percentages across product importance levels?
+5. Is there a relationship between the number of customer care calls and customer ratings?
+6. How does each warehouse block perform in terms of on-time delivery rates and ratings?
+7. What are the on-time and delay percentages across each mode of shipment?
+
 ---
-In high-volume e-commerce and retail logistics, shipping delays directly impact customer retention, support operational costs, and overall brand trust. 
-
-This project investigates the operational drivers behind shipment delays and quantifies their downstream impact on customer experience. By querying customer demographic, shipping, and fulfillment data, this analysis seeks to answer:
-
-1. **Root Causes of Delays:** Which shipment modes, product priority tiers, and warehouse facilities suffer the highest delay rates?
-2. **Operational Prioritization:** Are high-importance orders receiving priority handling over standard orders?
-3. **Downstream Business Impact:** How do shipment delays influence customer care call center volume and customer satisfaction
 
 ## Data Dictionary (`customer_analytics`)
----
-The dataset contains transaction and fulfillment records for 10,999 customer orders.
 
 | Column Name | Data Type | Description |
 | :--- | :--- | :--- |
-| `ID` | `INT` (PK) | Unique customer tracking identifier |
-| `Warehouse_block` | `VARCHAR(1)` | Fulfillment warehouse facility (`A`, `B`, `C`, `D`, `F`) |
-| `Mode_of_Shipment` | `VARCHAR(10)`| Primary transit method (`Flight`, `Ship`, `Road`) |
-| `Customer_care_calls` | `INT` | Number of inquiries logged with customer support |
-| `Customer_rating` | `INT` | Customer satisfaction rating on a scale of 1 (Lowest) to 5 (Highest) |
-| `Cost_of_the_Product` | `INT` | Product retail value (USD) |
-| `Prior_purchases` | `INT` | Lifetime order count prior to current shipment |
-| `Product_importance` | `VARCHAR(10)`| Business priority tier (`low`, `medium`, `high`) |
-| `Gender` | `VARCHAR(1)` | Customer gender (`M`, `F`) |
-| `Discount_offered` | `INT` | Discount percentage applied to order |
-| `Weight_in_gms` | `INT` | Package weight in grams |
-| `Reached_on_Time` | `INT` (Binary) | Delivery outcome indicator (`0` = On-Time, `1` = Delayed) |
+| `ID` | `INT` | Unique customer tracking identifier |
+| `Warehouse_block` | `VARCHAR` | Warehouse facility (`A`, `B`, `C`, `D`, `F`) |
+| `Mode_of_Shipment` | `VARCHAR` | Shipment method (`Flight`, `Ship`, `Road`) |
+| `Customer_care_calls` | `INT` | Number of customer care calls made |
+| `Customer_rating` | `INT` | Customer rating score (1 to 5) |
+| `Cost_of_the_Product` | `INT` | Product cost in USD |
+| `Prior_purchases` | `INT` | Number of prior purchases by customer |
+| `Product_importance` | `VARCHAR` | Product importance tier (`low`, `medium`, `high`) |
+| `Gender` | `VARCHAR` | Customer gender (`M`, `F`) |
+| `Discount_offered` | `INT` | Discount percentage offered |
+| `Weight_in_gms` | `INT` | Product weight in grams |
+| `Reached_on_Time` | `INT` | Delivery status (`0` = On-Time, `1` = Delayed) |
+
+---
+
+## Key Findings
+
+* **Customer Care Calls Increase with Delays:** Delayed deliveries average more customer care calls per order compared to on-time deliveries, leading to higher support call volumes.
+* **Ship is the Dominant Mode:** Across every warehouse block (A, B, C, D, and F), `Ship` is the most common mode of transportation by volume.
+* **Product Importance Does Not Prevent Delays:** High-importance products have roughly the same delay rate (~60%) as medium and low-importance products, showing that high-value orders are not being fast-tracked.
+* **Consistent Warehouse Performance:** All warehouse blocks perform similarly, with on-time delivery rates hovering around 40% and delayed rates around 60%.
+* **Shipment Mode Reliability:** `Flight`, `Road`, and `Ship` all experience similar delay percentages (~58% to 60%), with `Ship` handling the majority of total order volume.
+
+---
+
+## Business Recommendations
+
+* **Prioritize High-Importance Items:** Create an expedited fulfillment process in the warehouse for `high` importance products to ensure they are packed and shipped first.
+* **Prepare Support Staff for Delays:** Increase customer care staff availability during peak shipping periods to handle the higher volume of calls caused by delayed orders.
+* **Review Shipping Partnerships:** Work with delivery carriers to identify why around 60% of shipments across all modes (Flight, Road, and Ship) are experiencing delays.
+
+---
+
+## Project Structure
+
+```text
+├── README.md                           # Project summary and key findings
+├── sql/
+│   ├── 01_schema_setup.sql             # Table creation and data loading
+│   └── 02_analytical_queries.sql       # 8 SQL analysis queries
+└── data/
+    └── customer_analytics.csv          # Raw dataset
