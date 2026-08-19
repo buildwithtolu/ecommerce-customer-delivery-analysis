@@ -10,7 +10,7 @@ This project investigates the operational drivers behind shipment delays and qua
 2. **Operational Prioritization:** Are high-importance orders receiving priority handling over standard orders?
 3. **Downstream Business Impact:** How do shipment delays influence customer care call center volume and customer satisfaction
 
-## 📊 Data Dictionary (`customer_analytics`)
+## Data Dictionary (`customer_analytics`)
 ---
 The dataset contains transaction and fulfillment records for 10,999 customer orders.
 
