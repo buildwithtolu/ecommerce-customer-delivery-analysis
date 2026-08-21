@@ -40,11 +40,11 @@ This project investigates the factors associated with delivery delays across 10,
 
 ## Key Findings
 
-* **Customer Care Calls Increase with Delays:** Delayed deliveries average more customer care calls per order compared to on-time deliveries, leading to higher support call volumes.
+* **Customer Care Calls Increase with Delays:** Delivery Delays Do Not Drive Support Calls: On-time deliveries average slightly more calls per order (4.15 calls) than delayed deliveries (3.99 calls). High call volumes are steady across all orders regardless of fulfillment outcome, indicating support inquiries stem from general order inquiries rather than delay escalations.
 * **Ship is the Dominant Mode:** Across every warehouse block (A, B, C, D, and F), `Ship` is the most common mode of transportation by volume.
 * **Product Importance Does Not Prevent Delays:** High-importance products have roughly the same delay rate (~60%) as medium and low-importance products, showing that high-value orders are not being fast-tracked.
 * **Consistent Warehouse Performance:** All warehouse blocks perform similarly, with on-time delivery rates hovering around 40% and delayed rates around 60%.
-* **Shipment Mode Reliability:** `Flight`, `Road`, and `Ship` all experience similar delay percentages (~58% to 60%), with `Ship` handling the majority of total order volume.
+* **Delays Outpace On-Time Deliveries Across All Modes:** Across every transit method, late deliveries significantly outnumber on-time deliveries. `Flight` has the highest delay rate at **60.16%**, followed by `Ship` at **59.76%** (which handles 67.8% of all volume), and `Road` at **58.81%**. This demonstrates that fulfillment bottlenecks are systemic across the entire logistics network rather than isolated to one transport type.
 
 ---
 
